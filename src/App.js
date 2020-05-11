@@ -35,8 +35,12 @@ class App extends Component {
           bedroom={this.state.bedroom}
           range={this.state.range}
         />
-
-        <div><i>Data from public data of www.ura.gov.sg, I do not own the data. Use it at your own risk - Phong Le</i></div>
+        <br />
+        <div><i>Data from public data of www.ura.gov.sg, I do not own the data. Use it at your own risk</i></div>
+        <div>
+          <a target="_blank" href="https://github.com/sg-rental-price/sgrentalprice.com/issues">[Report Bug/Request Feature]</a> | 
+          &nbsp;<a target="_blank" href="https://github.com/sg-rental-price/sgrentalprice.com">[Source]</a>
+        </div>
       </div>
     );
   }
