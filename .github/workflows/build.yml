@@ -46,7 +46,7 @@ jobs:
 
   upload_s3:
     needs: build
-    runs-on: ubutu-latest
+    runs-on: ubuntu-latest
     steps:
     - name: Download build artifact
       uses: actions/download-artifact@v1
