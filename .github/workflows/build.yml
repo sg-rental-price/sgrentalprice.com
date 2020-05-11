@@ -34,6 +34,7 @@ jobs:
         path: build
 
   upload_s3:
+    needs: build
     runs-on: ubutu-latest
     steps:
     - name: Download build artifact
