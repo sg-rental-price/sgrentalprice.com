@@ -21,7 +21,6 @@ const ProjectSelector = (props) => {
 
   useEffect(() => {
     // init
-    console.log('call')
     axios.get(`${API_URL}/project`).then(res => {
       const list = massageData(res.data)
       setList(list)
