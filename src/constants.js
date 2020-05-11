@@ -1,0 +1,1 @@
+export const API_URL = 'https://06f2biaxm9.execute-api.ap-southeast-1.amazonaws.com/limited-public'
