@@ -35,10 +35,15 @@ jobs:
     - name: Install depedencies
       run: yarn
 
+    - name: Extract branch name
+      shell: bash
+      run: echo "::set-env name=REACT_APP_BUILD_BRANCH::$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g')"
+
+    - name: Information
+      run: echo "${BRANCH_NAME} - ${GITHUB_REF}"
+
     - name: Build project
       run: yarn build
-      env:
-        REACT_APP_BUILD_BRANCH: ${GITHUB_REF##*/}
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v1
