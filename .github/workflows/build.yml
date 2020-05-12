@@ -37,6 +37,8 @@ jobs:
 
     - name: Build project
       run: yarn build
+      env:
+        REACT_APP_BUILD_BRANCH: ${GITHUB_REF##*/}
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v1
