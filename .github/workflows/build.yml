@@ -4,7 +4,12 @@ name: CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on: [ push ]
+on:
+  push:
+    branches:
+      - master
+      - staging
+      - production
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -61,12 +66,15 @@ jobs:
     - name: Display structure of build files
       run: ls -lah
 
+    - name: Determine s3 bucket
+      run: echo "::set-env name=S3_BUCKET::$(BRANCH=$(echo ${GITHUB_REF#refs/heads/} | sed 's/\//_/g');([ \"$BRANCH\" == 'production' ] && echo '' || ([ \"$BRANCH\" == 'staging' ] && echo staging. || echo dev.));)"
+
     - name: Upload to S3 Bucket
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'dev.sgrentalprice.com'
+        AWS_S3_BUCKET: '${{ S3_BUCKET }}sgrentalprice.com'
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'ap-southeast-1'
