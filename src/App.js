@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'antd/dist/antd.css';
-import ProjectSelector from './ProjectSelector'
+import ProjectSelector, { rangePresets } from './ProjectSelector'
 import RentalData from './RentalData'
 import './style.css';
 
@@ -10,7 +10,7 @@ class App extends Component {
     this.state = {
       project: null,
       bedroom: [],
-      range: [],
+      range: rangePresets['Last Available 3 months'],
     };
   }
 
